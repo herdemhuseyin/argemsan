@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include argemsan *.css
+recursive-include argemsan *.csv
+recursive-include argemsan *.html
+recursive-include argemsan *.ico
+recursive-include argemsan *.js
+recursive-include argemsan *.json
+recursive-include argemsan *.md
+recursive-include argemsan *.png
+recursive-include argemsan *.py
+recursive-include argemsan *.svg
+recursive-include argemsan *.txt
+recursive-exclude argemsan *.pyc
