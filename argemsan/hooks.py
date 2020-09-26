@@ -32,6 +32,7 @@ app_license = "MIT"
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 doctype_js = {
+	"Purchase Order": "public/js/purchase_order.js",
 	"Purchase Receipt": "public/js/purchase_receipt.js",
 	"Stock Entry": "public/js/stock_entry.js",
 	"Stock Reconciliation": "public/js/stock_reconciliation.js"
@@ -93,14 +94,25 @@ doctype_js = {
 # 		"on_trash": "method"
 #	}
 # }
+
 # Asagidaki satirdan uygulama gelistirmeye basla 
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",
 # 		"on_cancel": "method",
-# 		"on_trash": "method"
+# 		"on_trash": "method",
+#		"Validate": "herdem_test.sales_order_custom.calculate_total_alan"
 #	}
 # }
+
+# Asagidaki satirdan uygulama gelistirmeye basla 
+#doc_events = {
+#	"Purchase Order": {
+#		"validate": "argemsan.lgd_utils.sasiparisi_test"
+#	}
+# }
+
+
 
 # Scheduled Tasks
 # ---------------
