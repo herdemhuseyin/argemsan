@@ -1,44 +1,21 @@
+//Purchase Order Customizations
 frappe.ui.form.on("Purchase Order", {
-	//The trigger can be changed, but refresh must be used to use a button
-	refresh: function(frm) {
-        var strDoctype = frm.doctype;
-        var strDocName = frm.doc.name;
-		//The following line creates a button.
-		frm.add_custom_button(__("Dosya Eklerini Al"),
-			//The function below is triggered when the button is pressed.
+	onload_post_render: (frm) => {
+        //Forma dosya guncelle butonunu ekleyelim
+        frm.add_custom_button(
+            __('Dosya Eklerini Güncelle'),
 			function() {
-                msgprint(strDoctype);
-                msgprint(strDocName);               
-//*- Döngünün başladığı yer.
-                $.each(frm.doc.items,  function(i,  d) {
-                    var StrStokkodu = d.item_code;
-                    msgprint(StrStokkodu);                                
-
-                    frappe.db.get_value("File", {"attached_to_doctype":"Item", "attached_to_name":StrStokkodu}, "*", function(value) {
-                      //msgprint(value.file_url);
-                      if (value.attached_to_name = StrStokkodu){
-                        msgprint("Ekli dosya Var");
-                        msgprint(value.attached_to_name);
-                      }else{
-                         msgprint("Dosya Eki Yok");
-                        }                     
-                    });
-
-                    // if (frappe.db.exists({
-                    //   'doctype': 'File',
-                    //   'attached_to_doctype': 'Item',
-                    //   'attached_to_name': StrStokkodu})){
-                    //     msgprint("Dosya Eki Var");
-                    //   }  
-
-                        
+                console.log("Dosya Eklerini Güncelle started");
+				frappe.call({
+					method:"argemsan.lgd_utils.td_attach_all_docs_from_item",
+					args:{ document:frm.doc, strURL:location.origin, },
+					callback: function(r) {
+						frm.reload_doc();
+                    }
                 });
-               // frm.refresh_field('items'); 	
-
-
-
-                
-//*-
-		});
-	}
+                console.log("Dosya Eklerini Güncelle finished");
+            }, 
+            __("Tools")
+        );
+    }
 });
